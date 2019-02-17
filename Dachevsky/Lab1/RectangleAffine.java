@@ -17,6 +17,10 @@ public class RectangleAffine extends Canvas implements Shape {
     private int height;
     private double theta;
 
+    public void setTheta(double theta) {
+        this.theta = theta;
+    }
+
     public RectangleAffine(int startCoordinateX, int startCoordinateY, int width, int height, double theta, Color border, Color background) {
         this.startCoordinateX = startCoordinateX;
         this.startCoordinateY = startCoordinateY;

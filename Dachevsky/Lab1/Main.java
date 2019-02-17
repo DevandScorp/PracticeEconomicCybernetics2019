@@ -17,7 +17,14 @@ public class Main extends JComponent implements ActionListener {
     private static final int HEIGHT = 800;
     private double theta = 0;
     private static final float BORDER = 4;
-
+    private RectangleAffine rectangleAffine = new RectangleAffine(
+            WIDTH / 2 - 200,
+            HEIGHT / 2 - 100,
+            200,
+            100,
+            theta,
+            borderColor,
+            backgroundColor);
     private final Timer timer;
 
     private Main() {
@@ -31,6 +38,7 @@ public class Main extends JComponent implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+        rectangleAffine.setTheta(theta);
         repaint();
     }
 
@@ -38,14 +46,6 @@ public class Main extends JComponent implements ActionListener {
     protected void paintComponent(Graphics g) {
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setStroke(new BasicStroke(BORDER));
-        RectangleAffine rectangleAffine = new RectangleAffine(
-                WIDTH / 2 - 200,
-                HEIGHT / 2 - 100,
-                200,
-                100,
-                theta,
-                borderColor,
-                backgroundColor);
         rectangleAffine.paint(graphics2D);
         theta += Math.PI / 180;
     }
