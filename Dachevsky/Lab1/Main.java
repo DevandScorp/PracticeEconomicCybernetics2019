@@ -1,4 +1,4 @@
-package Graphic;
+package graphic;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,24 +9,19 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-
 public class Main extends JComponent implements ActionListener {
 
-    private Color borderColor = Color.gray;
-    private Color backgroundColor = Color.lightGray;
-    private RectangleAffine rectangleAffine;
-
+    private static final Color borderColor = Color.gray;
+    private static final Color backgroundColor = Color.lightGray;
     private static final int WIDTH = 800;
     private static final int HEIGHT = 800;
     private double theta = 0;
     private static final float BORDER = 4;
 
-    private Timer timer;
+    private final Timer timer;
 
-    private final double ROTATE_ANGLE = Math.PI / 180;
-
-    private Main(int delay) {
-        timer = new Timer(delay, this);
+    private Main() {
+        timer = new Timer(20, this);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
 
@@ -43,7 +38,7 @@ public class Main extends JComponent implements ActionListener {
     protected void paintComponent(Graphics g) {
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setStroke(new BasicStroke(BORDER));
-        rectangleAffine = new RectangleAffine(
+        RectangleAffine rectangleAffine = new RectangleAffine(
                 WIDTH / 2 - 200,
                 HEIGHT / 2 - 100,
                 200,
@@ -52,14 +47,14 @@ public class Main extends JComponent implements ActionListener {
                 borderColor,
                 backgroundColor);
         rectangleAffine.paint(graphics2D);
-        theta += ROTATE_ANGLE;
+        theta += Math.PI / 180;
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Rectangle");
             JPanel panel = new JPanel();
-            Main movingRectangle = new Main(20);
+            Main movingRectangle = new Main();
             panel.add(movingRectangle);
             frame.getContentPane().add(panel);
             movingRectangle.start();

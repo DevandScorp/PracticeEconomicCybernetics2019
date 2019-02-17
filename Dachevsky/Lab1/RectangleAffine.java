@@ -1,9 +1,8 @@
-package Graphic;
+package graphic;
 
 import java.awt.*;
 
 import java.awt.geom.*;
-
 
 public class RectangleAffine extends Canvas implements Shape {
 
@@ -31,9 +30,7 @@ public class RectangleAffine extends Canvas implements Shape {
         this.backgroundColor = background;
     }
 
-
     @Override
-
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         AffineTransform at =
@@ -42,16 +39,12 @@ public class RectangleAffine extends Canvas implements Shape {
                         this.gravityCenterX + this.startCoordinateX,
                         this.gravityCenterY + this.startCoordinateY);
         graphics2D.setTransform(at);
-
         graphics2D.setColor(backgroundColor);
         graphics2D.fillRect(this.startCoordinateX, this.startCoordinateY,
                 this.width, this.height);
         graphics2D.setColor(borderColor);
-
         graphics2D.draw(rectangle2D);
-
     }
-
 
     @Override
     public Rectangle2D getBounds2D() {
